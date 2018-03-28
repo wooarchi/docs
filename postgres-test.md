@@ -22,7 +22,7 @@ Password for user admin:
 (1 row)
 ```
 
--slave
+- slave
 postgres/1(10.10.10.211) - Slave
 ```
 $ psql -h 10.10.10.211 -U admin -p 6432 -c "select application_name, state, sync_priority, sync_state from pg_stat_replication;"
@@ -39,7 +39,7 @@ Password for user admin:
 $ psql -h 10.10.10.211 -U admin -d postgres -c "CREATE DATABASE testdb";
 $ psql -h 10.10.10.211 -U admin -d postgres -c "CREATE USER testuser PASSWORD 'test1234'";
 $ psql -h 10.10.10.211 -U admin -d postgres -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO testuser";
-$ psql -h 10.10.10.211 -U testuser -d testdb -c "create table testtable (testkey integer)";
+$ psql -h 10.10.10.211 -U testuser -d testdb -c "CREATE TABLE testtable (testkey INTEGER)";
 ```
 
 ## Failover test
