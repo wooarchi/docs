@@ -43,9 +43,13 @@ $ psql -h 10.10.10.210 -U testuser -d testdb -c "CREATE TABLE testtable (testkey
 ```
 
 ## Failover test
--  
-
--
+- Slave node Stop
+```
+$ psql -h 10.10.10.210 -U testuser -d testdb -c "CREATE TABLE testtable2 (testkey2 INTEGER)";
+Password for user testuser: 
+CREATE TABLE
+```
+- master node stop
 
 ## Failback test
 
