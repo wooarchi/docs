@@ -36,14 +36,16 @@ Password for user admin:
 ## nomal test
 - 테스트 계정 및 데이터베이스 생성 (md5는 수동 등록 후 pgpool 리로드)
 ```
-$ psql -h 10.10.10.211 -U admin -d postgres -c "CREATE DATABASE testdb";
-$ psql -h 10.10.10.211 -U admin -d postgres -c "CREATE USER testuser PASSWORD 'test1234'";
-$ psql -h 10.10.10.211 -U admin -d postgres -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO testuser";
-$ psql -h 10.10.10.211 -U testuser -d testdb -c "CREATE TABLE testtable (testkey INTEGER)";
+$ psql -h 10.10.10.210 -U admin -d postgres -c "CREATE DATABASE testdb";
+$ psql -h 10.10.10.210 -U admin -d postgres -c "CREATE USER testuser PASSWORD 'test1234'";
+$ psql -h 10.10.10.210 -U admin -d postgres -c "GRANT ALL PRIVILEGES ON DATABASE testdb TO testuser";
+$ psql -h 10.10.10.210 -U testuser -d testdb -c "CREATE TABLE testtable (testkey INTEGER)";
 ```
 
 ## Failover test
+-  
 
+-
 
 ## Failback test
 
