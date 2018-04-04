@@ -35,7 +35,7 @@ egov_buildpack-v3-5                10         true      false    egov-buildpack-
 
 # create buildpack
 $ cf create-buildpack 
-$ cf create-buildpack python-offline-buildpack-v1-6-11 python_buildpack-v1.6.11.zip 11 --enable
+$ cf create-buildpack python_offline_buildpack-v1-6-11 python_buildpack-v1.6.11.zip 11 --enable
 
 # diable python online buildpack
 $ cf update-buildpack python_buildpack-v1-5-26 --disable
@@ -54,5 +54,5 @@ python_buildpack-v1-5-26           7          false     false    python-buildpac
 php_buildpack-v4-3-42              8          true      false    php-buildpack-v4.3.42.zip
 binary_buildpack-v1-0-14           9          true      false    binary-buildpack-v1.0.14.zip
 egov_buildpack-v3-5                10         true      false    egov-buildpack-offline-egov3.5.zip
-python-offline-buildpack-v1-6-11   11         true      false    python_buildpack-v1.6.11.zip
+python_offline_buildpack-v1-6-11   11         true      false    python_buildpack-v1.6.11.zip
 ```
