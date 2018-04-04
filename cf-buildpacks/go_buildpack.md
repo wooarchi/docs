@@ -1,19 +1,24 @@
 # Go offline buildpack
 
 # source code download
+```
 $ git clone https://github.com/cloudfoundry/go-buildpack.git
+```
 
 # version checkout
+```
 $ git checkout v1.8.20
+```
 
 # code build
+```
 $ source .envrc
 $ cd src/go/vendor/github.com/cloudfoundry/libbuildpack/packager/buildpack-packager && go install
 $ cd ~/go-buildpack
 
 ※ buildpack-packager build [ --cached ]
 $ buildpack-packager build --cached
-...
+```
 
 - Go offline buildpack upload
 ```
