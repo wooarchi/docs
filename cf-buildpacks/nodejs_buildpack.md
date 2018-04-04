@@ -1,16 +1,16 @@
 # Nodejs offline buildpack
 
-# source code download
+- source code download
 ```
 $ git clone https://github.com/cloudfoundry/nodejs-buildpack.git
 ```
 
-# version checkout
+- version checkout
 ```
 $ git checkout v1.6.21
 ```
 
-# code build
+- code build
 ```
 $ source .envrc
 $ cd src/nodejs/vendor/github.com/cloudfoundry/libbuildpack/packager/buildpack-packager && go install
