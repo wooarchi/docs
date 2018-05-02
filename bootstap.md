@@ -23,7 +23,7 @@ proxy/f093b999-4ecd-46ab-b120-f1a07bafcc30       running        z1  10.10.10.204
 
 Succeeded
 ```
-- bosh errand로 복구
+## bosh errand로 복구
 ```
 $ bosh -e paas-bosh -d cf-mysql run-errand bootstrap
 
@@ -60,4 +60,45 @@ Succeeded
 ```
 
 
-- menual 복구
+## menual 복구
+- 각 노드의 mariadb 중지
+```
+$ monit stop mariadb_ctrl
+```
+
+- 'seqno' 조회
+```
+$ cat /var/vcap/store/mysql/grastate.dat | grep 'seqno:'
+```
+
+- seqno가 -1 일 경우 
+```
+$ /var/vcap/packages/mariadb/bin/mysqld --wsrep-recover
+```
+
+- 'seqno'가 가장 큰 노드
+```
+ $ echo -n "NEEDS_BOOTSTRAP" > /var/vcap/store/mysql/state.txt
+ 
+ # config 수정
+ $ vi jobs/mysql/config/my.cnf 
+ wsrep_cluster_address = gcomm://10.10.10.201
+ 
+ # 실행
+ $ monit start mariadb_ctrl
+```
+
+- 나머지 노드 ( 첫번째 노드 정상 동작 후 )
+```
+$ monit start mairadb_ctrl
+```
+
+- 첫번째 노드 재시작
+```
+# config 수정
+  $ vi jobs/mysql/config/my.cnf 
+  wsrep_cluster_address = gcomm://10.10.10.201,10.10.10.202,10.10.10.203
+  
+  # 재시작
+  $ monit restart mariadb_ctrl
+```
