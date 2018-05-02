@@ -102,3 +102,7 @@ $ monit start mairadb_ctrl
   # 재시작
   $ monit restart mariadb_ctrl
 ```
+
+## 정상 기동 테스트
+```
+```
