@@ -1,4 +1,0 @@
-# Ubuntu Command
-
-## nohup
-- 
