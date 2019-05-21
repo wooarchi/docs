@@ -14,7 +14,7 @@ $ sudo su
 ```
 $ vi /etc/resolve.conf
 
-nameserver 168.78.82.224
+nameserver {dns_ip}
 ```
 
 반영을 위해서는 앱을 재시작 해야합니다.
