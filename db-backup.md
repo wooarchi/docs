@@ -1,4 +1,4 @@
-# DB 백업 가이드
+# DB 백업/복구 가이드
 ## 사전 준비사항
 - CF CLI 설치 
 - Mysql client 설치
@@ -99,6 +99,79 @@ $ mysqldump -h 127.0.0.1 -P 3306 -u Q9LfOKp3EWSDTC31 -p8OYy7PqXb9sGdKP0  --singl
 
 ## 데이터베이스 복구
 - cf ssh 터널링 구성
+```
+# 터널링 구성을 위한 정보 조회
+# cf env (어플리케이션 이름)
+$ cf env test-php
+Getting env variables for app test-php in org 42-88 / space 42-88 as kepri-mng...
+OK
+
+System-Provided:
+{
+ "VCAP_SERVICES": {
+  "p-mysql": [
+   {
+    "binding_name": null,
+    "credentials": {
+     "hostname": "10.20.0.6",
+     "jdbcUrl": "jdbc:mysql://10.20.0.6:3306/cf_ead49b80_d1ee_4e03_858b_7e659013a0b9?user=Q9LfOKp3EWSDTC31\u0026password=8OYy7PqXb9sGdKP0",
+     "name": "cf_ead49b80_d1ee_4e03_858b_7e659013a0b9",
+     "password": "8OYy7PqXb9sGdKP0",
+     "port": 3306,
+     "uri": "mysql://Q9LfOKp3EWSDTC31:8OYy7PqXb9sGdKP0@10.20.0.6:3306/cf_ead49b80_d1ee_4e03_858b_7e659013a0b9?reconnect=true",
+     "username": "Q9LfOKp3EWSDTC31"
+    },
+    "instance_name": "test-db",
+    "label": "p-mysql",
+    "name": "test-db",
+    "plan": "100mb",
+    "provider": null,
+    "syslog_drain_url": null,
+    "tags": [
+     "mysql"
+    ],
+    "volume_mounts": []
+   }
+  ]
+ }
+}
+
+{
+ "VCAP_APPLICATION": {
+  "application_id": "b8a0c683-26ac-444d-aaef-fedb4f0387b6",
+  "application_name": "test-php",
+  "application_uris": [
+   "test-php.kepri-dev.crossent.com"
+  ],
+  "application_version": "1ac2e7e5-ebbf-484c-831c-ee8ea778281a",
+  "cf_api": "https://api.kepri-dev.crossent.com",
+  "limits": {
+   "disk": 1024,
+   "fds": 16384,
+   "mem": 256
+  },
+  "name": "test-php",
+  "space_id": "1e414a5a-7195-4e90-9446-79cfcf61fe6f",
+  "space_name": "42-88",
+  "uris": [
+   "test-php.kepri-dev.crossent.com"
+  ],
+  "users": null,
+  "version": "1ac2e7e5-ebbf-484c-831c-ee8ea778281a"
+ }
+}
+
+No user-defined env variables have been set
+
+No running env variables have been set
+
+No staging env variables have been set
+
+# 터널링 구성
+# cf ssh -N -L (로컬에서 접속할포트):(접속DB 호스트):3306 (어플리케이션 이름)
+$ cf ssh -N -L 3306:10.20.0.6:3306 test-php
+```
+
 - database 삭제 후 생성 
 ```
 # Mysql 원격 접속
