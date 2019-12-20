@@ -88,7 +88,7 @@ No staging env variables have been set
 
 - cf ssh 터널링 구성 (위의 결과로 정보 참조)
 ```
-# cf ssh -N -L localport:hostname:3306 instance_name
+# cf ssh -N -L (로컬에서 접속할포트):(접속DB 호스트):3306 (어플리케이션 이름)
 $ cf ssh -N -L 3306:10.20.0.6:3306 test-php
 ```
 - mysqdump 명령어로 데이터베이스 백업(--single-transaction, --skip-add-locks 옵션을 사용해야합니다.)
