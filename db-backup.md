@@ -21,8 +21,6 @@ test-db       p-mysql   100mb   test-php     create succeeded
 - 바인딩된 service 접속정보 확인
 ```
 $ cf env test-php
-```
-ubuntu@inception:~/workspace$ cf env test-php
 Getting env variables for app test-php in org 42-88 / space 42-88 as kepri-mng...
 OK
 
