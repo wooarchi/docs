@@ -97,3 +97,24 @@ $ cf ssh -N -L 3306:10.20.0.6:3306 test-php
 $ mysqldump -h 127.0.0.1 -P 3306 -u Q9LfOKp3EWSDTC31 -p8OYy7PqXb9sGdKP0  --single-transaction --skip-add-locks cf_ead49b80_d1ee_4e03_858b_7e659013a0b9 > test-db2.sql
 ```
 
+## 데이터베이스 복구
+- cf ssh 터널링 구성
+- database 삭제 후 생성 
+```
+# Mysql 원격 접속
+$ mysql -h 127.0.0.1 -P 3306 -u 유저 -p패스워드 데이터베이스명
+mysql -h 127.0.0.1 -P 3306 -u Q9LfOKp3EWSDTC31 -p8OYy7PqXb9sGdKP0 cf_ead49b80_d1ee_4e03_858b_7e659013a0b9
+
+# 데이터베이스 삭제
+drop database cf_ead49b80_d1ee_4e03_858b_7e659013a0b9;
+
+# 데이터베이스 생성
+create database cf_ead49b80_d1ee_4e03_858b_7e659013a0b9;
+```
+
+- database 복구
+```
+# mysql -h 127.0.0.1 -P 3306 -u 유저 -p패스워드 데이터베이스명 < 백업파일.sql
+mysql -h 127.0.0.1 -P 3306 -u Q9LfOKp3EWSDTC31 -p8OYy7PqXb9sGdKP0 cf_ead49b80_d1ee_4e03_858b_7e659013a0b9 < test-db2.sql
+
+```
